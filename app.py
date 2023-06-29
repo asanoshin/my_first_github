@@ -6,8 +6,8 @@ from linebot import  LineBotApi, WebhookHandler
 from linebot.exceptions import InvalidSignatureError
 from linebot.models import MessageEvent, TextMessage, TextSendMessage
 
-line_bot_api = LineBotApi('你的 CHANNEL_ACCESS_TOKEN')
-handler = WebhookHandler('你的 CHANNEL_SECRET')
+line_bot_api = LineBotApi('CFpKo+Ei6jeRbHhKFB6H70Fs806m2HIyydxv0GmqKR5d1kgNtBaf6Dq1vPnIVv10RwrrfNPDMLULyAltA6v0ANkq2a3eFnVHChajvOoJfv1YvGpHqTftBXPjl/PwQYzeRbA/yGxFhrcxNZAlPP07LgdB04t89/1O/w1cDnyilFU=')
+handler = WebhookHandler('495877a8a3b6ced6a694c97e969bd231')
 
 @app.route("/callback", methods=['POST'])
 def callback():
