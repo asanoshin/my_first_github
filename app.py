@@ -27,7 +27,7 @@ handler = WebhookHandler(config.get('line-bot',
 @app.route('/')
 def hello_Flask():
 
-    msg = "Hello, Flask Web Service!"
+    msg = "Hello, Flask Web Service test 2!"
     
     return msg
 
