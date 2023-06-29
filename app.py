@@ -24,6 +24,12 @@ line_bot_api = LineBotApi(config.get('line-bot',
 handler = WebhookHandler(config.get('line-bot',
                                     'channel_secret'))
 
+@app.route('/')
+def hello_Flask():
+
+    msg = "Hello, Flask Web Service!"
+    
+    return msg
 
 @app.route("/callback", methods=['POST'])
 def callback():
