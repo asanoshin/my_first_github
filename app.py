@@ -26,6 +26,7 @@ line_bot_api = LineBotApi(config.get('line-bot',
 handler = WebhookHandler(config.get('line-bot',
                                     'channel_secret'))
 
+
 # openai setting
 os.environ["OPENAI_API_KEY"] = config.get('line-bot',
                                           'openai_api_key')
@@ -35,6 +36,7 @@ def hello_Flask():
     msg = "這是第二次測式"
     
     return msg
+
 
 @app.route("/callback", methods=['POST'])
 def callback():
