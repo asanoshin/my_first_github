@@ -1,7 +1,7 @@
 # 使用系統和 config 檔案的函式庫功能
 import os
 import configparser
-import jason
+import json
 
 # 使用 Flask 的函式庫功能
 from flask import Flask, request, abort
@@ -28,7 +28,7 @@ handler = WebhookHandler(config.get('line-bot',
 @app.route('/')
 def hello_Flask():
 
-    msg = "Hello, Flask Web Service test 2!"
+    msg = "Hello, Flask Web Service test 3!"
     
     return msg
 
