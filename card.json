@@ -1,0 +1,93 @@
+{
+    "type": "bubble",
+    "hero": {
+      "type": "image",
+      "url": "https://images.pexels.com/photos/3182824/pexels-photo-3182824.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+      "size": "full",
+      "aspectRatio": "20:13",
+      "aspectMode": "cover",
+      "action": {
+        "type": "uri",
+        "uri": "http://linecorp.com/"
+      }
+    },
+    "body": {
+      "type": "box",
+      "layout": "vertical",
+      "contents": [
+        {
+          "type": "text",
+          "text": "有話要說",
+          "weight": "bold",
+          "size": "xl"
+        },
+        {
+          "type": "box",
+          "layout": "vertical",
+          "margin": "lg",
+          "spacing": "sm",
+          "contents": [
+            {
+              "type": "box",
+              "layout": "baseline",
+              "spacing": "sm",
+              "contents": [
+                {
+                  "type": "text",
+                  "text": "您的聲音對晨心非常重要。晨心會盡力幫您在育兒旅程更美好。",
+                  "color": "#1a171b",
+                  "size": "sm",
+                  "flex": 1,
+                  "decoration": "none",
+                  "style": "normal",
+                  "wrap": true
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "footer": {
+      "type": "box",
+      "layout": "vertical",
+      "spacing": "sm",
+      "contents": [
+        {
+          "type": "button",
+          "action": {
+            "type": "uri",
+            "label": "您的五星好評是我們最溫暖的支持",
+            "uri": "https://g.page/r/CWiSubIw-LpuEBM/review"
+          },
+          "position": "relative"
+        },
+        {
+          "type": "button",
+          "style": "link",
+          "height": "sm",
+          "action": {
+            "type": "uri",
+            "label": "給晨心寶貴的建議",
+            "uri": "https://linecorp.com"
+          },
+          "position": "relative"
+        },
+        {
+          "type": "box",
+          "layout": "vertical",
+          "contents": [],
+          "margin": "sm"
+        },
+        {
+          "type": "button",
+          "action": {
+            "type": "message",
+            "label": "我有問題要諮詢",
+            "text": "我有問題要諮詢"
+          }
+        }
+      ],
+      "flex": 0
+    }
+  }

@@ -1,6 +1,7 @@
 # 使用系統和 config 檔案的函式庫功能
 import os
 import configparser
+import jason
 
 # 使用 Flask 的函式庫功能
 from flask import Flask, request, abort
@@ -57,9 +58,19 @@ def handle_message(event):
     # 從 Line 傳入的訊息
     msg = event.message.text
                                                
-    # 回傳相同文字內容
-    line_bot_api.reply_message(event.reply_token, TextSendMessage(msg))
+    # # 回傳相同文字內容
+    # line_bot_api.reply_message(event.reply_token, TextSendMessage(msg))
 
+ # 判斷訊息內容
+    if msg == 'profile':
+        # 在這裡定義你的FlexMessage物件，並將其命名為flex_message
+        FlexMessage = json.load(open('card.json','r',encoding='utf-8'))
+
+        # 回傳 Flex Message
+        line_bot_api.reply_message(event.reply_token, FlexSendMessage('profile',FlexMessage))
+    else:
+        # 回傳相同文字內容
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(msg))
 
 if __name__ == "__main__":
     app.run()
