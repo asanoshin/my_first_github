@@ -63,38 +63,14 @@ def handle_message(event):
 
  # 判斷訊息內容
     if msg == '有話要說':
-        # # 在這裡定義你的FlexMessage物件，並將其命名為flex_message
-        # FlexMessage = json.load(open('card.json','r',encoding='utf-8'))
+        # 在這裡定義你的FlexMessage物件，並將其命名為flex_message
+        FlexMessage = json.load(open('card.json','r',encoding='utf-8'))
 
-        # # 回傳 Flex Message
-        # line_bot_api.reply_message(event.reply_token, FlexSendMessage('有話要說',FlexMessage))
-
-        TemplateMessage = TemplateSendMessage(
-            alt_text='確認樣板',
-            template=ConfirmTemplate(
-                text='目前現場看診號為13號，下一個線上取號為110號，您是否確認線上取號',
-                actions=[
-                    MessageTemplateAction(  #按鈕選項
-                        label='是',
-                        text='@yes'
-                    ),
-                    MessageTemplateAction(
-                        label='否',
-                        text='@no'
-                    )
-                ]
-            )
-        )
-        line_bot_api.reply_message(event.reply_token, message)
-    except:
-        line_bot_api.reply_message(event.reply_token,TextSendMessage(text='發生錯誤！'))
-
-
+        # 回傳 Flex Message
+        line_bot_api.reply_message(event.reply_token, FlexSendMessage('有話要說',FlexMessage))
     else:
         # 回傳相同文字內容
         line_bot_api.reply_message(event.reply_token, TextSendMessage(msg))
-
-
 
 if __name__ == "__main__":
     app.run()
