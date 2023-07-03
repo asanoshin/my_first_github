@@ -9,7 +9,7 @@ from flask import Flask, request, abort
 # 使用 LINE Bot SDK 的函式庫功能
 from linebot import LineBotApi, WebhookHandler
 from linebot.exceptions import InvalidSignatureError
-from linebot.models import MessageEvent, TextMessage, TextSendMessage, FlexSendMessage,  TemplateSendMessage
+from linebot.models import MessageEvent, TextMessage, TextSendMessage, FlexSendMessage,  ConfirmTemplate
 
 
 # 設定讀入 config.ini 檔案
@@ -28,7 +28,7 @@ handler = WebhookHandler(config.get('line-bot',
 @app.route('/')
 def hello_Flask():
 
-    msg = "Hello, Flask Web Service test 3!"
+    msg = "Hello, Flask Web Service test 4!"
     
     return msg
 
@@ -96,7 +96,7 @@ def handle_message(event):
                 ]
             )
         )
-        line_bot_api.reply_message(event.reply_token, ConfirmMessage)
+        line_bot_api.reply_message(event.reply_token, ConirmMessage)
     else:
 
 
