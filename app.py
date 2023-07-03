@@ -80,23 +80,23 @@ def handle_message(event):
         # # 回傳 Flex Message
         # line_bot_api.reply_message(event.reply_token, FlexSendMessage('有話要說',FlexMessage))
 
-        ConirmMessage = TemplateSendMessage(
+        ConfirmMessage = TemplateSendMessage(
             alt_text='確認樣板',
             template=ConfirmTemplate(
-                text='目前現場看診號為13號，下一個線上取號為110號，您是否確認線上取號',
+                text='目前現場看診號為13號，下一個線上取號為110號，您是否確認取號',
                 actions=[
                     MessageTemplateAction(  #按鈕選項
                         label='是',
-                        text='@yes'
+                        text='是'
                     ),
                     MessageTemplateAction(
                         label='否',
-                        text='@no'
+                        text='否'
                     )
                 ]
             )
         )
-        line_bot_api.reply_message(event.reply_token, ConirmMessage)
+        line_bot_api.reply_message(event.reply_token, ConfirmMessage)
     else:
 
 
