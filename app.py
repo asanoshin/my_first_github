@@ -9,7 +9,7 @@ from flask import Flask, request, abort
 # 使用 LINE Bot SDK 的函式庫功能
 from linebot import LineBotApi, WebhookHandler
 from linebot.exceptions import InvalidSignatureError
-from linebot.models import MessageEvent, TextMessage, TextSendMessage, FlexSendMessage,  TemplateSendMessage, ConfirmTemplate
+from linebot.models import MessageEvent, TextMessage, TextSendMessage, FlexSendMessage, MessageTemplateAction, TemplateSendMessage, ConfirmTemplate
 
 
 # 設定讀入 config.ini 檔案
