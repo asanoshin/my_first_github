@@ -102,70 +102,70 @@ def handle_message(event):
     elif msg == 'enterovirus':
 
 
-        # ConfirmMessage = TemplateSendMessage(
-        #     alt_text="確認樣板",
-        #     template=ConfirmTemplate(
-        #         text="enterovirus",
-        #         actions=[
-        #             MessageTemplateAction(  #按鈕選項
-        #                 label="是",
-        #                 text="是"
-        #             ),
-        #             MessageTemplateAction(
-        #                 label="否",
-        #                 text="否"
-        #             )
-        #         ]
-        #     )
-        # )
-        # line_bot_api.reply_message(event.reply_token, ConfirmMessage)
-        # return True
-
-        Carousel_template = TemplateSendMessage(
-                alt_text='Carousel template',
-                template=CarouselTemplate(
-                columns=[
-                    CarouselColumn(
-                        thumbnail_image_url='顯示在開頭的大圖片網址',
-                        title='this is menu1',
-                        text='description1',
-                        actions=[
-                              MessageTemplateAction(
-                                label='message2',
-                                text='message text2'
-                            ),
-                            MessageTemplateAction(
-                                label='message1',
-                                text='message text1'
-                            )
-                            # ),
-                            # URITemplateAction(
-                            #     label='uri1',
-                            #     uri='http://example.com/1'
-                            # )
-                        ]
+        ConfirmMessage = TemplateSendMessage(
+            alt_text="確認樣板",
+            template=ConfirmTemplate(
+                text="enterovirus",
+                actions=[
+                    MessageTemplateAction(  #按鈕選項
+                        label="是",
+                        text="是"
                     ),
-                    CarouselColumn(
-                        thumbnail_image_url='顯示在開頭的大圖片網址',
-                        title='this is menu2',
-                        text='description2',
-                        actions=[
-                            MessageTemplateAction(
-                                label='message4',
-                                text='message text4'
-                            ),
-                            MessageTemplateAction(
-                                label='message3',
-                                text='message text3'
-                            )
-
-                        ]
+                    MessageTemplateAction(
+                        label="否",
+                        text="否"
                     )
                 ]
             )
-            )
-        line_bot_api.reply_message(event.reply_token,Carousel_template)
+        )
+        line_bot_api.reply_message(event.reply_token, ConfirmMessage)
         return True
+
+        # Carousel_template = TemplateSendMessage(
+        #         alt_text='Carousel template',
+        #         template=CarouselTemplate(
+        #         columns=[
+        #             CarouselColumn(
+        #                 thumbnail_image_url='顯示在開頭的大圖片網址',
+        #                 title='this is menu1',
+        #                 text='description1',
+        #                 actions=[
+        #                       MessageTemplateAction(
+        #                         label='message2',
+        #                         text='message text2'
+        #                     ),
+        #                     MessageTemplateAction(
+        #                         label='message1',
+        #                         text='message text1'
+        #                     )
+        #                     # ),
+        #                     # URITemplateAction(
+        #                     #     label='uri1',
+        #                     #     uri='http://example.com/1'
+        #                     # )
+        #                 ]
+        #             ),
+        #             CarouselColumn(
+        #                 thumbnail_image_url='顯示在開頭的大圖片網址',
+        #                 title='this is menu2',
+        #                 text='description2',
+        #                 actions=[
+        #                     MessageTemplateAction(
+        #                         label='message4',
+        #                         text='message text4'
+        #                     ),
+        #                     MessageTemplateAction(
+        #                         label='message3',
+        #                         text='message text3'
+        #                     )
+
+        #                 ]
+        #             )
+        #         ]
+        #     )
+        #     )
+        # line_bot_api.reply_message(event.reply_token,Carousel_template)
+        # return True
 
     
     else:
