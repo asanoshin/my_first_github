@@ -99,55 +99,55 @@ def handle_message(event):
         line_bot_api.reply_message(event.reply_token, ConfirmMessage)
         return True
     
-            # elif msg == '腸病毒':
+    elif msg == '腸病毒':
 
-    #     EnteroMessage =TemplateSendMessage(
-    #         alt_text='腸病毒',
-    #         template=CarouselTemplate(
-    #             columns=[
-    #                 CarouselColumn(
-    #                     thumbnail_image_url='https://steam.oxxostudio.tw/download/python/line-template-message-demo.jpg',
-    #                     title='選單 1',
-    #                     text='說明文字 1',
-    #                     actions=[
-    #                         PostbackAction(
-    #                             label='postback',
-    #                             data='data1'
-    #                         ),
-    #                         MessageAction(
-    #                         label='hello',
-    #                         text='hello'
-    #                         ),
-    #                         URIAction(
-    #                             label='oxxo.studio',
-    #                             uri='http://oxxo.studio'
-    #                         )
-    #                     ]
-    #                 ),
-    #                 CarouselColumn(
-    #                     thumbnail_image_url='https://steam.oxxostudio.tw/download/python/line-template-message-demo2.jpg',
-    #                     title='選單 2',
-    #                     text='說明文字 2',
-    #                     actions=[
-    #                         PostbackAction(
-    #                             label='postback',
-    #                             data='data1'
-    #                         ),
-    #                         MessageAction(
-    #                             label='hi',
-    #                             text='hi'
-    #                         ),
-    #                         URIAction(
-    #                             label='STEAM 教育學習網',
-    #                             uri='https://steam.oxxostudio.tw'
-    #                         )
-    #                     ]
-    #                 )
-    #             ]
-    #         )
-    #     )       
-    #     line_bot_api.reply_message(event.reply_token, EnteroMessage)
-    #     return True
+        EnteroMessage =TemplateSendMessage(
+            alt_text='腸病毒',
+            template=CarouselTemplate(
+                columns=[
+                    CarouselColumn(
+                        thumbnail_image_url='https://steam.oxxostudio.tw/download/python/line-template-message-demo.jpg',
+                        title='選單 1',
+                        text='說明文字 1',
+                        actions=[
+                            PostbackAction(
+                                label='postback',
+                                data='data1'
+                            ),
+                            MessageAction(
+                            label='hello',
+                            text='hello'
+                            ),
+                            URIAction(
+                                label='oxxo.studio',
+                                uri='http://oxxo.studio'
+                            )
+                        ]
+                    ),
+                    CarouselColumn(
+                        thumbnail_image_url='https://steam.oxxostudio.tw/download/python/line-template-message-demo2.jpg',
+                        title='選單 2',
+                        text='說明文字 2',
+                        actions=[
+                            PostbackAction(
+                                label='postback',
+                                data='data1'
+                            ),
+                            MessageAction(
+                                label='hi',
+                                text='hi'
+                            ),
+                            URIAction(
+                                label='STEAM 教育學習網',
+                                uri='https://steam.oxxostudio.tw'
+                            )
+                        ]
+                    )
+                ]
+            )
+        )       
+        line_bot_api.reply_message(event.reply_token, EnteroMessage)
+        return True
 
     
     else:
