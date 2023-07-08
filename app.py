@@ -151,11 +151,12 @@ def handle_message(event):
 
     
     else:
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(msg))
+    
         return False
-
   
         # 回傳相同文字內容
-        line_bot_api.reply_message(event.reply_token, TextSendMessage(msg))
+
 
 if __name__ == "__main__":
     app.run()
