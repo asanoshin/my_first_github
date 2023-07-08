@@ -121,53 +121,54 @@ def handle_message(event):
         # line_bot_api.reply_message(event.reply_token, ConfirmMessage)
         # return True
 
-        EnteroMessage =TemplateSendMessage(
-            alt_text='腸病毒',
-            template=CarouselTemplate(
+        Carousel_template = TemplateSendMessage(
+                alt_text='Carousel template',
+                template=CarouselTemplate(
                 columns=[
                     CarouselColumn(
-                        thumbnail_image_url='https://steam.oxxostudio.tw/download/python/line-template-message-demo.jpg',
-                        title='選單 1',
-                        text='說明文字 1',
+                        thumbnail_image_url='顯示在開頭的大圖片網址',
+                        title='this is menu1',
+                        text='description1',
                         actions=[
-                            PostbackAction(
-                                label='postback',
-                                data='data1'
+                            PostbackTemplateAction(
+                                label='postback1',
+                                text='postback text1',
+                                data='action=buy&itemid=1'
                             ),
-                            MessageAction(
-                            label='hello',
-                            text='hello'
+                            MessageTemplateAction(
+                                label='message1',
+                                text='message text1'
                             ),
-                            URIAction(
-                                label='oxxo.studio',
-                                uri='http://oxxo.studio'
+                            URITemplateAction(
+                                label='uri1',
+                                uri='http://example.com/1'
                             )
                         ]
                     ),
                     CarouselColumn(
-                        thumbnail_image_url='https://steam.oxxostudio.tw/download/python/line-template-message-demo2.jpg',
-                        title='選單 2',
-                        text='說明文字 2',
+                        thumbnail_image_url='顯示在開頭的大圖片網址',
+                        title='this is menu2',
+                        text='description2',
                         actions=[
-                            PostbackAction(
-                                label='postback',
-                                data='data1'
+                            PostbackTemplateAction(
+                                label='postback2',
+                                text='postback text2',
+                                data='action=buy&itemid=2'
                             ),
-                            MessageAction(
-                                label='hi',
-                                text='hi'
+                            MessageTemplateAction(
+                                label='message2',
+                                text='message text2'
                             ),
-                            URIAction(
-                                label='STEAM 教育學習網',
-                                uri='https://steam.oxxostudio.tw'
+                            URITemplateAction(
+                                label='連結2',
+                                uri='http://example.com/2'
                             )
                         ]
                     )
                 ]
             )
-        )       
-        line_bot_api.reply_message(event.reply_token, EnteroMessage)
-        return True
+            )
+        line_bot_api.reply_message(event.reply_token,Carousel_template)
 
     
     else:
