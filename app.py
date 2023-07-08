@@ -100,12 +100,7 @@ def handle_message(event):
         return True
     
 
-    if msg == '腸病毒':
-        # # 在這裡定義你的FlexMessage物件，並將其命名為flex_message
-        # FlexMessage = json.load(open('card.json','r',encoding='utf-8'))
-
-        # # 回傳 Flex Message
-        # line_bot_api.reply_message(event.reply_token, FlexSendMessage('有話要說',FlexMessage))
+    if msg == 'test':
 
         EnteroMessage =TemplateSendMessage(
             alt_text='腸病毒',
