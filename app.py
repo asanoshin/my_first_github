@@ -100,7 +100,7 @@ def handle_message(event):
         return True
     
 
-    if msg == 'test':
+    elif msg == '腸病毒':
 
         EnteroMessage =TemplateSendMessage(
             alt_text='腸病毒',
