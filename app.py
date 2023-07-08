@@ -91,7 +91,7 @@ def handle_message(event):
                     ),
                     MessageTemplateAction(
                         label="否",
-                        text="否"'
+                        text="否"
                     )
                 ]
             )
