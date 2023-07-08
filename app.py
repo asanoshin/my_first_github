@@ -9,7 +9,7 @@ from flask import Flask, request, abort
 # 使用 LINE Bot SDK 的函式庫功能
 from linebot import LineBotApi, WebhookHandler
 from linebot.exceptions import InvalidSignatureError
-from linebot.models import MessageEvent, TextMessage, TextSendMessage, FlexSendMessage, MessageTemplateAction, TemplateSendMessage, ConfirmTemplate
+from linebot.models import MessageEvent, TextMessage, TextSendMessage, FlexSendMessage, MessageTemplateAction, TemplateSendMessage, ConfirmTemplate, CarouselTemplate,  CarouselColumn
 
 
 # 設定讀入 config.ini 檔案
@@ -97,8 +97,66 @@ def handle_message(event):
             )
         )
         line_bot_api.reply_message(event.reply_token, ConfirmMessage)
-    else:
+        return True
+    
 
+    if msg == '腸病毒':
+        # # 在這裡定義你的FlexMessage物件，並將其命名為flex_message
+        # FlexMessage = json.load(open('card.json','r',encoding='utf-8'))
+
+        # # 回傳 Flex Message
+        # line_bot_api.reply_message(event.reply_token, FlexSendMessage('有話要說',FlexMessage))
+
+        EnteroMessage =TemplateSendMessage(
+            alt_text='腸病毒',
+            template=CarouselTemplate(
+                columns=[
+                    CarouselColumn(
+                        thumbnail_image_url='https://steam.oxxostudio.tw/download/python/line-template-message-demo.jpg',
+                        title='選單 1',
+                        text='說明文字 1',
+                        actions=[
+                            PostbackAction(
+                                label='postback',
+                                data='data1'
+                            ),
+                            MessageAction(
+                            label='hello',
+                            text='hello'
+                            ),
+                            URIAction(
+                                label='oxxo.studio',
+                                uri='http://oxxo.studio'
+                            )
+                        ]
+                    ),
+                    CarouselColumn(
+                        thumbnail_image_url='https://steam.oxxostudio.tw/download/python/line-template-message-demo2.jpg',
+                        title='選單 2',
+                        text='說明文字 2',
+                        actions=[
+                            PostbackAction(
+                                label='postback',
+                                data='data1'
+                            ),
+                            MessageAction(
+                                label='hi',
+                                text='hi'
+                            ),
+                            URIAction(
+                                label='STEAM 教育學習網',
+                                uri='https://steam.oxxostudio.tw'
+                            )
+                        ]
+                    )
+                ]
+            )
+        )       
+        line_bot_api.reply_message(event.reply_token, EnteroMessage)
+        return True
+    
+    else:
+        return False
 
   
         # 回傳相同文字內容

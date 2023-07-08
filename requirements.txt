@@ -7,3 +7,4 @@ psycopg2==2.9.3
 eventlet==0.30.2
 gevent-websocket
 redis==4.5.5
+jason
