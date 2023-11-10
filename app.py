@@ -66,14 +66,16 @@
 # if __name__ == "__main__":
 #     app.run()
 
-
 from flask import Flask, render_template, request
-import requests
-
+from linebot import LineBotApi
+from linebot.models import TextSendMessage
 app = Flask(__name__)
 
 # 使用您提供的Channel Access Token
 CHANNEL_ACCESS_TOKEN = 'CFpKo+Ei6jeRbHhKFB6H70Fs806m2HIyydxv0GmqKR5d1kgNtBaf6Dq1vPnIVv10RwrrfNPDMLULyAltA6v0ANkq2a3eFnVHChajvOoJfv1YvGpHqTftBXPjl/PwQYzeRbA/yGxFhrcxNZAlPP07LgdB04t89/1O/w1cDnyilFU='
+#Ue023c2496e505047813026b3a41e5987
+
+line_bot_api = LineBotApi(CHANNEL_ACCESS_TOKEN)
 
 @app.route('/')
 def index():
@@ -81,30 +83,17 @@ def index():
 
 @app.route('/send', methods=['POST'])
 def send_message():
-    user_id = request.form['line_id']
+    line_id = request.form['line_id']
     message = request.form['message']
-    if send_to_line(user_id, message):
+    try:
+        talkText(line_id, message)
         return '訊息已發送'
-    else:
-        return '發送失敗'
+    except Exception as e:
+        return str(e)
 
-def send_to_line(user_id, message):
-    headers = {
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer ' + CHANNEL_ACCESS_TOKEN
-    }
-    data = {
-        "to": user_id,
-        "messages": [
-            {
-                "type": "text",
-                "text": message
-            }
-        ]
-    }
-
-    response = requests.post('https://api.line.me/v2/bot/message/push', headers=headers, json=data)
-    return response.status_code == 200
+def talkText(lineID, text):
+    line_bot_api.push_message(lineID, TextSendMessage(text=text))
 
 if __name__ == '__main__':
     app.run(debug=True)
+
