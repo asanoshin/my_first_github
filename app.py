@@ -81,18 +81,21 @@ YOUR_CHANNEL_SECRET = '495877a8a3b6ced6a694c97e969bd231'
 def index():
     return render_template('index.html')  # 前端 HTML 頁面
 
-@app.route('/send_message', methods=['POST'])
+@app.route('/send', methods=['POST'])
 def send_message():
+    line_id = request.form['line_id']
+    message = request.form['message']
     try:
-        line_bot_api.push_message('U879e3796fbb1185b9654c34152d07ed9', TextSendMessage(text='test'))
-        return 'Message sent!'
-    except LineBotApiError as e:
-        # 處理例外
+        talkText(line_id, message)
+        return '訊息已發送'
+    except Exception as e:
         return str(e)
+
+def talkText(lineID, text):
+    line_bot_api.push_message(lineID, TextSendMessage(text=text))
 
 if __name__ == '__main__':
     app.run(debug=True)
-
 
 # ----------------------
 # from flask import Flask, request

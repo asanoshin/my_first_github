@@ -1,11 +1,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>LINE Bot Message Sender</title>
+    <title>發送訊息到LINE</title>
 </head>
 <body>
-    <form action="/send_message" method="post">
-        <input type="submit" value="Send Message">
+    <form action="/send" method="post">
+        <label for="line_id">LINE ID:</label><br>
+        <input type="text" id="line_id" name="line_id"><br>
+        <label for="message">訊息:</label><br>
+        <textarea id="message" name="message"></textarea><br>
+        <input type="submit" value="確定">
     </form>
 </body>
 </html>
