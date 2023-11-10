@@ -75,9 +75,9 @@ app = Flask(__name__)
 
 # # 使用您提供的Channel Access Token
 CHANNEL_ACCESS_TOKEN = 'CFpKo+Ei6jeRbHhKFB6H70Fs806m2HIyydxv0GmqKR5d1kgNtBaf6Dq1vPnIVv10RwrrfNPDMLULyAltA6v0ANkq2a3eFnVHChajvOoJfv1YvGpHqTftBXPjl/PwQYzeRbA/yGxFhrcxNZAlPP07LgdB04t89/1O/w1cDnyilFU='
-#Ue023c2496e505047813026b3a41e5987
-line_bot_api = LineBotApi(CHANNEL_ACCESS_TOKEN)
 
+line_bot_api = LineBotApi(CHANNEL_ACCESS_TOKEN)
+admin_id = "Ue023c2496e505047813026b3a41e5987"
 
 @app.route('/')
 def index():
@@ -88,12 +88,12 @@ def send_message():
     line_id = request.form['line_id']
     message = request.form['message']
     try:
-        talkText(line_id, message)
+        talkText(admin_id, message)
         return '訊息已發送'
     except Exception as e:
         return str(e)
 
-def talkText(lineID, text):
+def talkText(lineID, message):
     line_bot_api.push_message(lineID, TextSendMessage(text=text))
 
 if __name__ == '__main__':
