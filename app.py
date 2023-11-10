@@ -93,8 +93,8 @@ def send_message():
     except Exception as e:
         return str(e)
 
-def talkText(lineID, message):
-    line_bot_api.push_message(lineID, TextSendMessage(text=message))
+def talkText(lineID, text):
+    line_bot_api.push_message(lineID, TextSendMessage(text=text))
 
 if __name__ == '__main__':
     app.run(debug=True)
