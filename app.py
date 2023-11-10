@@ -69,13 +69,21 @@
 from flask import Flask, render_template, request
 from linebot import LineBotApi
 from linebot.models import TextSendMessage
+from linebot import WebhookHandler
+
 app = Flask(__name__)
 
-# 使用您提供的Channel Access Token
-CHANNEL_ACCESS_TOKEN = 'CFpKo+Ei6jeRbHhKFB6H70Fs806m2HIyydxv0GmqKR5d1kgNtBaf6Dq1vPnIVv10RwrrfNPDMLULyAltA6v0ANkq2a3eFnVHChajvOoJfv1YvGpHqTftBXPjl/PwQYzeRbA/yGxFhrcxNZAlPP07LgdB04t89/1O/w1cDnyilFU='
-#Ue023c2496e505047813026b3a41e5987
+# # 使用您提供的Channel Access Token
+# CHANNEL_ACCESS_TOKEN = 'CFpKo+Ei6jeRbHhKFB6H70Fs806m2HIyydxv0GmqKR5d1kgNtBaf6Dq1vPnIVv10RwrrfNPDMLULyAltA6v0ANkq2a3eFnVHChajvOoJfv1YvGpHqTftBXPjl/PwQYzeRbA/yGxFhrcxNZAlPP07LgdB04t89/1O/w1cDnyilFU='
+# #Ue023c2496e505047813026b3a41e5987
+# line_bot_api = LineBotApi(CHANNEL_ACCESS_TOKEN)
 
-line_bot_api = LineBotApi(CHANNEL_ACCESS_TOKEN)
+config = configparser.ConfigParser()
+config.read("config.ini")
+
+handler = WebhookHandler(config.get("line-bot", "channel_secret"))
+
+
 
 @app.route('/')
 def index():
