@@ -58,8 +58,8 @@ def handle_message(event):
     # 從 Line 傳入的訊息
     msg = event.message.text
                                                
-    # # 回傳相同文字內容
-    # line_bot_api.reply_message(event.reply_token, TextSendMessage(msg))
+    # 回傳相同文字內容
+    line_bot_api.reply_message(event.reply_token, TextSendMessage(msg))
 
 #  # 判斷訊息內容
 #     if msg == '有話要說':
@@ -72,54 +72,54 @@ def handle_message(event):
 #         # 回傳相同文字內容
 #         line_bot_api.reply_message(event.reply_token, TextSendMessage(msg))
 
- # 判斷訊息內容
-    if msg == '確認樣板':
-        # # 在這裡定義你的FlexMessage物件，並將其命名為flex_message
-        # FlexMessage = json.load(open('card.json','r',encoding='utf-8'))
+#  # 判斷訊息內容
+#     if msg == '確認樣板':
+#         # # 在這裡定義你的FlexMessage物件，並將其命名為flex_message
+#         # FlexMessage = json.load(open('card.json','r',encoding='utf-8'))
 
-        # # 回傳 Flex Message
-        # line_bot_api.reply_message(event.reply_token, FlexSendMessage('有話要說',FlexMessage))
+#         # # 回傳 Flex Message
+#         # line_bot_api.reply_message(event.reply_token, FlexSendMessage('有話要說',FlexMessage))
 
-        ConfirmMessage = TemplateSendMessage(
-            alt_text="確認樣板",
-            template=ConfirmTemplate(
-                text="目前現場看診號為1111號，下一個線上取號為110號，您是否確認取號, 第3次測式",
-                actions=[
-                    MessageTemplateAction(  #按鈕選項
-                        label="是",
-                        text="是"
-                    ),
-                    MessageTemplateAction(
-                        label="否",
-                        text="否"
-                    )
-                ]
-            )
-        )
-        line_bot_api.reply_message(event.reply_token, ConfirmMessage)
-        return True
+#         ConfirmMessage = TemplateSendMessage(
+#             alt_text="確認樣板",
+#             template=ConfirmTemplate(
+#                 text="目前現場看診號為1111號，下一個線上取號為110號，您是否確認取號, 第3次測式",
+#                 actions=[
+#                     MessageTemplateAction(  #按鈕選項
+#                         label="是",
+#                         text="是"
+#                     ),
+#                     MessageTemplateAction(
+#                         label="否",
+#                         text="否"
+#                     )
+#                 ]
+#             )
+#         )
+#         line_bot_api.reply_message(event.reply_token, ConfirmMessage)
+#         return True
     
-    elif msg == 'enterovirus':
+#     elif msg == 'enterovirus':
 
 
-        ConfirmMessage = TemplateSendMessage(
-            alt_text="確認樣板",
-            template=ConfirmTemplate(
-                text="enterovirus",
-                actions=[
-                    MessageTemplateAction(  #按鈕選項
-                        label="是",
-                        text="是"
-                    ),
-                    MessageTemplateAction(
-                        label="否",
-                        text="否"
-                    )
-                ]
-            )
-        )
-        line_bot_api.reply_message(event.reply_token, ConfirmMessage)
-        return True
+#         ConfirmMessage = TemplateSendMessage(
+#             alt_text="確認樣板",
+#             template=ConfirmTemplate(
+#                 text="enterovirus",
+#                 actions=[
+#                     MessageTemplateAction(  #按鈕選項
+#                         label="是",
+#                         text="是"
+#                     ),
+#                     MessageTemplateAction(
+#                         label="否",
+#                         text="否"
+#                     )
+#                 ]
+#             )
+#         )
+#         line_bot_api.reply_message(event.reply_token, ConfirmMessage)
+#         return True
 
         # Carousel_template = TemplateSendMessage(
         #         alt_text='Carousel template',
@@ -173,7 +173,7 @@ def handle_message(event):
     
         return False
   
-        # 回傳相同文字內容
+        回傳相同文字內容
 
 
 if __name__ == "__main__":
