@@ -68,6 +68,7 @@
 
 
 from flask import Flask, request, render_template
+import requests
 
 app = Flask(__name__)
 
@@ -75,12 +76,28 @@ app = Flask(__name__)
 def index():
     return render_template('index.html')
 
-@app.route('/submit', methods=['POST'])
-def submit():
-    id = request.form['id']
-    content = request.form['content']
-    # 在這裡處理id和內容
-    return f'接收到的ID: {id}, 內容: {content}'
+@app.route('/send', methods=['POST'])
+def send_message():
+    line_id = request.form['line_id']
+    message = request.form['message']
+    send_to_line(line_id, message)
+    return f'Message sent to {line_id}'
+
+def send_to_line(line_id, message):
+    access_token = 'CFpKo+Ei6jeRbHhKFB6H70Fs806m2HIyydxv0GmqKR5d1kgNtBaf6Dq1vPnIVv10RwrrfNPDMLULyAltA6v0ANkq2a3eFnVHChajvOoJfv1YvGpHqTftBXPjl/PwQYzeRbA/yGxFhrcxNZAlPP07LgdB04t89/1O/w1cDnyilFU='
+    headers = {
+        'Authorization': f'Bearer {CFpKo+Ei6jeRbHhKFB6H70Fs806m2HIyydxv0GmqKR5d1kgNtBaf6Dq1vPnIVv10RwrrfNPDMLULyAltA6v0ANkq2a3eFnVHChajvOoJfv1YvGpHqTftBXPjl/PwQYzeRbA/yGxFhrcxNZAlPP07LgdB04t89/1O/w1cDnyilFU=}',
+        'Content-Type': 'application/json'
+    }
+    data = {
+        "to": line_id,
+        "messages": [{
+            "type": "text",
+            "text": message
+        }]
+    }
+    response = requests.post('https://api.line.me/v2/bot/message/push', headers=headers, json=data)
+    return response.json()
 
 if __name__ == '__main__':
     app.run(debug=True)
