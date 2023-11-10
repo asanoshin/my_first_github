@@ -65,30 +65,69 @@
 
 # if __name__ == "__main__":
 #     app.run()
+# ----------------------------
+# from flask import Flask, request, render_template
+# from linebot import LineBotApi
+# from linebot.exceptions import LineBotApiError
+# from linebot.models import TextSendMessage
 
-from flask import Flask, request, render_template
-from linebot import LineBotApi
-from linebot.exceptions import LineBotApiError
-from linebot.models import TextSendMessage
+# app = Flask(__name__)
+
+# # 替換以下行的 YOUR_CHANNEL_ACCESS_TOKEN 和 YOUR_CHANNEL_SECRET
+# line_bot_api = LineBotApi('CFpKo+Ei6jeRbHhKFB6H70Fs806m2HIyydxv0GmqKR5d1kgNtBaf6Dq1vPnIVv10RwrrfNPDMLULyAltA6v0ANkq2a3eFnVHChajvOoJfv1YvGpHqTftBXPjl/PwQYzeRbA/yGxFhrcxNZAlPP07LgdB04t89/1O/w1cDnyilFU=')
+# YOUR_CHANNEL_SECRET = '495877a8a3b6ced6a694c97e969bd231'
+
+# @app.route('/')
+# def index():
+#     return render_template('index.html')  # 前端 HTML 頁面
+
+# @app.route('/send_message', methods=['POST'])
+# def send_message():
+#     try:
+#         line_bot_api.push_message('Ue023c2496e505047813026b3a41e5987', TextSendMessage(text='test'))
+#         return 'Message sent!'
+#     except LineBotApiError as e:
+#         # 處理例外
+#         return str(e)
+
+# if __name__ == '__main__':
+#     app.run(debug=True)
+
+
+# ----------------------
+from flask import Flask, request
+from linebot import LineBotApi, WebhookHandler
+from linebot.exceptions import InvalidSignatureError
+from linebot.models import MessageEvent, TextMessage, TextSendMessage
 
 app = Flask(__name__)
 
-# 替換以下行的 YOUR_CHANNEL_ACCESS_TOKEN 和 YOUR_CHANNEL_SECRET
 line_bot_api = LineBotApi('CFpKo+Ei6jeRbHhKFB6H70Fs806m2HIyydxv0GmqKR5d1kgNtBaf6Dq1vPnIVv10RwrrfNPDMLULyAltA6v0ANkq2a3eFnVHChajvOoJfv1YvGpHqTftBXPjl/PwQYzeRbA/yGxFhrcxNZAlPP07LgdB04t89/1O/w1cDnyilFU=')
-YOUR_CHANNEL_SECRET = '495877a8a3b6ced6a694c97e969bd231'
+handler = WebhookHandler('495877a8a3b6ced6a694c97e969bd231')
 
-@app.route('/')
-def index():
-    return render_template('index.html')  # 前端 HTML 頁面
+@app.route("/callback", methods=['POST'])
+def callback():
+    # 從請求中獲取 X-Line-Signature 標頭和請求主體
+    signature = request.headers['X-Line-Signature']
+    body = request.get_data(as_text=True)
 
-@app.route('/send_message', methods=['POST'])
-def send_message():
     try:
-        line_bot_api.push_message('Ue023c2496e505047813026b3a41e5987', TextSendMessage(text='test'))
-        return 'Message sent!'
-    except LineBotApiError as e:
-        # 處理例外
-        return str(e)
+        handler.handle(body, signature)
+    except InvalidSignatureError:
+        abort(400)
 
-if __name__ == '__main__':
-    app.run(debug=True)
+    return 'OK'
+
+@handler.add(MessageEvent, message=TextMessage)
+def handle_message(event):
+    user_id = event.source.user_id  # 獲取用戶 ID
+    print("User ID:", user_id)  # 在伺服器上記錄用戶 ID
+
+    # 回應用戶
+    line_bot_api.reply_message(
+        event.reply_token,
+        TextSendMessage(text=f"您的用戶 ID 是: {user_id}")
+    )
+
+if __name__ == "__main__":
+    app.run()
