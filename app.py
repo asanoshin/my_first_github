@@ -83,7 +83,7 @@ def handle_message(event):
         ConfirmMessage = TemplateSendMessage(
             alt_text="確認樣板",
             template=ConfirmTemplate(
-                text="目前現場看診號為1111號，下一個線上取號為110號，您是否確認取號, 第二次測式",
+                text="目前現場看診號為1111號，下一個線上取號為110號，您是否確認取號, 第3次測式",
                 actions=[
                     MessageTemplateAction(  #按鈕選項
                         label="是",
