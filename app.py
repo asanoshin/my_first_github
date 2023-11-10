@@ -71,31 +71,64 @@ from linebot import LineBotApi
 from linebot.exceptions import LineBotApiError
 from linebot.models import TextSendMessage
 
+import pandas as pd
+from werkzeug.utils import secure_filename
+
+
 app = Flask(__name__)
 
 # 替換以下行的 YOUR_CHANNEL_ACCESS_TOKEN 和 YOUR_CHANNEL_SECRET
 line_bot_api = LineBotApi('CFpKo+Ei6jeRbHhKFB6H70Fs806m2HIyydxv0GmqKR5d1kgNtBaf6Dq1vPnIVv10RwrrfNPDMLULyAltA6v0ANkq2a3eFnVHChajvOoJfv1YvGpHqTftBXPjl/PwQYzeRbA/yGxFhrcxNZAlPP07LgdB04t89/1O/w1cDnyilFU=')
 YOUR_CHANNEL_SECRET = '495877a8a3b6ced6a694c97e969bd231'
-
+# U879e3796fbb1185b9654c34152d07ed9
 @app.route('/')
 def index():
     return render_template('index.html')  # 前端 HTML 頁面
 
-@app.route('/send', methods=['POST'])
-def send_message():
-    line_id = request.form['line_id']
-    message = request.form['message']
-    try:
-        talkText(line_id, message)
-        return '訊息已發送'
-    except Exception as e:
-        return str(e)
+# @app.route('/send', methods=['POST'])
+# def send_message():
+#     line_id = request.form['line_id']
+#     message = request.form['message']
+#     try:
+#         talkText(line_id, message)
+#         return '訊息已發送'
+#     except Exception as e:
+#         return str(e)
 
-def talkText(lineID, text):
-    line_bot_api.push_message(lineID, TextSendMessage(text=text))
+# def talkText(lineID, text):
+#     line_bot_api.push_message(lineID, TextSendMessage(text=text))
+
+@app.route('/upload', methods=['POST'])
+def upload_file():
+    if 'file' not in request.files:
+        return '沒有文件部分'
+    file = request.files['file']
+    if file.filename == '':
+        return '沒有選擇文件'
+    if file and allowed_file(file.filename):
+        filename = secure_filename(file.filename)
+        file.save(filename)
+        send_messages_from_file(filename)
+        return '訊息已發送'
+    return '無效的文件'
+
+def allowed_file(filename):
+    return '.' in filename and \
+           filename.rsplit('.', 1)[1].lower() in {'xlsx', 'xls'}
+
+def send_messages_from_file(filename):
+    df = pd.read_excel(filename)
+    for index, row in df.iterrows():
+        line_id = row[0]
+        message = row[1]
+        try:
+            line_bot_api.push_message(line_id, TextSendMessage(text=message))
+        except Exception as e:
+            print(f"Error sending message to {line_id}: {e}")
 
 if __name__ == '__main__':
     app.run(debug=True)
+
 
 # ----------------------
 # from flask import Flask, request

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html>
 <head>
     <title>發送訊息到LINE</title>
@@ -12,5 +12,17 @@
         <input type="submit" value="確定">
     </form>
 </body>
-</html>
+</html> -->
 
+<!DOCTYPE html>
+<html>
+<head>
+    <title>上傳並發送訊息</title>
+</head>
+<body>
+    <form action="/upload" method="post" enctype="multipart/form-data">
+        <input type="file" name="file" accept=".xlsx, .xls"><br><br>
+        <input type="submit" value="確定">
+    </form>
+</body>
+</html>
