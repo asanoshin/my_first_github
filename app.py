@@ -79,8 +79,8 @@ def index():
 def submit():
     id = request.form['id']
     content = request.form['content']
-    # 這裡可以添加處理這些數據的代碼
-    return f"接收到的ID: {id}, 內容: {content}"
+    # 在這裡處理id和內容
+    return f'接收到的ID: {id}, 內容: {content}'
 
 if __name__ == '__main__':
     app.run(debug=True)
