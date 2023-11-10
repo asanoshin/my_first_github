@@ -74,7 +74,7 @@ from linebot.models import TextSendMessage
 app = Flask(__name__)
 
 # # 使用您提供的Channel Access Token
-CHANNEL_ACCESS_TOKEN = 'CFpKo+Ei6jeRbHhKFB6H70Fs806m2HIyydxv0GmqKR5d1kgNtBaf6Dq1vPnIVv10RwrrfNPDMLULyAltA6v0ANkq2a3eFnVHChajvOoJfv1YvGpHqTftBXPjl/PwQYzeRbA/yGxFhrcxNZAlPP07LgdB04t89/1O/w1cDnyilFU='
+CHANNEL_ACCESS_TOKEN = '731ebcI8SsiBNaEoOYK8qCQAChX2gawvPomKf3GKDntAQBKmnZyj3iGYEvI9kgb9y3UR5f1VTy75jgpDKftR9v2mCUWqbtwFbzbudGU7QJBhf51MmMzQMEjnmyRFWfAOldXPX1SG0zC+YhI7q+gwhAdB04t89/1O/w1cDnyilFU='
 
 line_bot_api = LineBotApi(CHANNEL_ACCESS_TOKEN)
 admin_id = "Ue023c2496e505047813026b3a41e5987"
@@ -95,6 +95,7 @@ def send_message():
 
 def talkText(lineID, text):
     line_bot_api.push_message(lineID, TextSendMessage(text=text))
+
 
 if __name__ == '__main__':
     app.run(debug=True)
