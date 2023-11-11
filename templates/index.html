@@ -17,12 +17,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>上傳並發送訊息</title>
+    <title>發送 LINE 訊息</title>
 </head>
 <body>
-    <form action="/upload" method="post" enctype="multipart/form-data">
-        <input type="file" name="file" accept=".xlsx, .xls"><br><br>
-        <input type="submit" value="確定">
+    <h2>上傳 Excel 檔案</h2>
+    <form action="/send" method="post" enctype="multipart/form-data">
+        <input type="file" name="file" accept=".xlsx">
+        <input type="submit" value="上傳">
     </form>
 </body>
 </html>
+
