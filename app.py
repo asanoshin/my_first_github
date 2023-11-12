@@ -98,7 +98,7 @@ def send_message():
         return 'No selected file'
 
     if file:
-        df = pd.read_excel(file)
+        df = pd.read_csv(file)
         for index, row in df.iterrows():
             line_id = row[0]
             message = row[1]
