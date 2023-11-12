@@ -82,29 +82,42 @@ line_bot_api = LineBotApi('CFpKo+Ei6jeRbHhKFB6H70Fs806m2HIyydxv0GmqKR5d1kgNtBaf6
 YOUR_CHANNEL_SECRET = '495877a8a3b6ced6a694c97e969bd231'
 # U879e3796fbb1185b9654c34152d07ed9
 
+
 @app.route('/')
 def index():
     return render_template('index.html')
 
 @app.route('/send', methods=['POST'])
-def send_messages():
+def send_message():
     if 'file' not in request.files:
-        return '沒有檔案部分'
+        return 'No file part'
+
     file = request.files['file']
+
     if file.filename == '':
-        return '沒有選擇檔案'
+        return 'No selected file'
+
     if file:
         df = pd.read_excel(file)
         for index, row in df.iterrows():
-            line_id = row['ID']
-            message = row['訊息']
+            line_id = row[0]
+            message = row[1]
             line_bot_api.push_message(line_id, TextSendMessage(text=message))
-        return '訊息已發送'
-    return '發送錯誤'
+        
+        # 在這裡刪除文件
+        os.remove(file.filename)
+
+        return 'Messages sent'
+
+    return 'Upload error'
 
 if __name__ == '__main__':
-    port = int(os.environ.get('PORT', 5000))
-    app.run(host='0.0.0.0', port=port)
+    app.run()
+
+
+if __name__ == '__main__':
+    app.run()
+
 
 
 
