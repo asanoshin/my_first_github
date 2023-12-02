@@ -67,36 +67,37 @@
 #     app.run()
 
 
-# from flask import Flask, request, render_template
-# import os
-# import pandas as pd
-# from flask import Flask, request, render_template
-# from linebot import LineBotApi
-# from linebot.models import TextSendMessage
+from flask import Flask, request, render_template
+import os
+import pandas as pd
+from flask import Flask, request, render_template
+from linebot import LineBotApi
+from linebot.models import TextSendMessage
 
 
-# app = Flask(__name__)
+app = Flask(__name__)
 
-# @app.route('/')
-# def index():
-#     return render_template('index.html')
+# 設定 LINE Messaging API 資訊
+# 替換以下行的 YOUR_CHANNEL_ACCESS_TOKEN 和 YOUR_CHANNEL_SECRET
+line_bot_api = LineBotApi('CFpKo+Ei6jeRbHhKFB6H70Fs806m2HIyydxv0GmqKR5d1kgNtBaf6Dq1vPnIVv10RwrrfNPDMLULyAltA6v0ANkq2a3eFnVHChajvOoJfv1YvGpHqTftBXPjl/PwQYzeRbA/yGxFhrcxNZAlPP07LgdB04t89/1O/w1cDnyilFU=')
+YOUR_CHANNEL_SECRET = '495877a8a3b6ced6a694c97e969bd231'
+# U879e3796fbb1185b9654c34152d07ed9
 
-# @app.route('/submit', methods=['POST'])
-# def submit():
-#     id = request.form['id']
-#     content = request.form['content']
-#     # 在這裡處理id和內容
-#     return f'接收到的ID: {id}, 內容: {content}'
 
-# if __name__ == '__main__':
-#     app.run(debug=True)
-# =======
-# # 設定 LINE Messaging API 資訊
-# # 替換以下行的 YOUR_CHANNEL_ACCESS_TOKEN 和 YOUR_CHANNEL_SECRET
-# line_bot_api = LineBotApi('CFpKo+Ei6jeRbHhKFB6H70Fs806m2HIyydxv0GmqKR5d1kgNtBaf6Dq1vPnIVv10RwrrfNPDMLULyAltA6v0ANkq2a3eFnVHChajvOoJfv1YvGpHqTftBXPjl/PwQYzeRbA/yGxFhrcxNZAlPP07LgdB04t89/1O/w1cDnyilFU=')
-# YOUR_CHANNEL_SECRET = '495877a8a3b6ced6a694c97e969bd231'
-# # U879e3796fbb1185b9654c34152d07ed9
 
+@app.route('/')
+def index():
+    return render_template('index.html')
+
+@app.route('/submit', methods=['POST'])
+def submit():
+    id = request.form['id']
+    content = request.form['content']
+    # 在這裡處理id和內容
+    return f'接收到的ID: {id}, 內容: {content}'
+
+if __name__ == '__main__':
+    app.run()
 
 # @app.route('/')
 # def index():
@@ -173,43 +174,3 @@
 
 # if __name__ == "__main__":
 #     app.run()
-# ------------------
-from flask import Flask, request, abort, render_template
-from linebot import LineBotApi, WebhookHandler
-from linebot.exceptions import LineBotApiError, InvalidSignatureError
-from linebot.models import TextSendMessage
-
-app = Flask(__name__)
-
-line_bot_api = LineBotApi('CFpKo+Ei6jeRbHhKFB6H70Fs806m2HIyydxv0GmqKR5d1kgNtBaf6Dq1vPnIVv10RwrrfNPDMLULyAltA6v0ANkq2a3eFnVHChajvOoJfv1YvGpHqTftBXPjl/PwQYzeRbA/yGxFhrcxNZAlPP07LgdB04t89/1O/w1cDnyilFU=')
-handler = WebhookHandler('495877a8a3b6ced6a694c97e969bd231')
-
-@app.route("/callback", methods=['POST'])
-def callback():
-    # 從請求中獲取 X-Line-Signature 標頭和請求主體
-    signature = request.headers['X-Line-Signature']
-    body = request.get_data(as_text=True)
-
-    try:
-        handler.handle(body, signature)
-    except InvalidSignatureError:
-        abort(400)
-
-    return 'OK'
-
-@app.route('/')
-def index():
-    return render_template('index.html')
-
-
-@app.route('/send', methods=['POST'])
-def send():
-    line_id = request.form['line_id']
-    message = request.form['message']
-    try:
-        line_bot_api.push_message(line_id, TextSendMessage(text=message))
-    except LineBotApiError as e:
-        # 處理發送消息時的錯誤
-        return f"An error occurred: {e.message}"
-    return f"Message sent to {line_id}!"
-
