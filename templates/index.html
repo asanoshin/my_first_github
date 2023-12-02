@@ -1,14 +1,45 @@
+<!-- <!DOCTYPE html>
+<html>
+<head>
+    <title>發送訊息到LINE</title>
+</head>
+<body>
+    <form action="/send" method="post">
+        <label for="line_id">LINE ID:</label><br>
+        <input type="text" id="line_id" name="line_id"><br>
+        <label for="message">訊息:</label><br>
+        <textarea id="message" name="message"></textarea><br>
+        <input type="submit" value="確定">
+    </form>
+</body>
+</html> -->
+
+<!-- <!DOCTYPE html>
+<html>
+<head>
+    <title>發送 LINE 訊息</title>
+</head>
+<body>
+    <h2>上傳 CSV 檔案</h2>
+    <form action="/send" method="post" enctype="multipart/form-data">
+        <input type="file" name="file" accept=".csv">
+        <input type="submit" value="上傳">
+    </form>
+</body>
+</html> -->
+
+<!-- -------------------------- -->
 <!DOCTYPE html>
 <html>
 <head>
-    <title>簡單提交表單</title>
+    <title>發送訊息到LINE</title>
 </head>
 <body>
-    <form action="/submit" method="post">
-        <label for="id">ID:</label><br>
-        <input type="text" id="id" name="id"><br>
-        <label for="content">內容:</label><br>
-        <textarea id="content" name="content"></textarea><br>
+    <form action="/send" method="post">
+        <label for="line_id">LINE ID:</label><br>
+        <input type="text" id="line_id" name="line_id"><br>
+        <label for="message">訊息:</label><br>
+        <textarea id="message" name="message"></textarea><br>
         <input type="submit" value="確定">
     </form>
 </body>
